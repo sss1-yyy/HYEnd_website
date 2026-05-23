@@ -7,14 +7,18 @@ import com.hyend.dto.inquiry.ReplyResponse;
 import com.hyend.entity.Inquiry;
 import com.hyend.entity.InquiryReply;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 // TODO [H-3] 문의 MapStruct Mapper 구현
-@Mapper(componentModel="spring")
+@Mapper(componentModel = "spring")
 public interface InquiryMapper {
+
     Inquiry toEntity(InquiryRequest request);
+
+    @Mapping(target = "author", source = "author.name")
     InquiryResponse toResponse(Inquiry inquiry);
 
     InquiryReply toEntity(ReplyRequest request);
-    ReplyResponse toResponse(InquiryReply inquiry);
 
+    ReplyResponse toResponse(InquiryReply inquiry);
 }
